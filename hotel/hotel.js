@@ -73,7 +73,7 @@ class Hotel {
     }
 
     nombreHuespedes() {
-        console.log("\HUÉSPEDES: ");
+        console.log("\nHUÉSPEDES: ");
         this.#habitaciones
             .filter( h => h.isOcupada())
             .map( h => h.huesped.nombre)

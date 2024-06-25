@@ -81,7 +81,7 @@ function mostrarGanadores(personajes) {
 }
 
 /**
- * Muestra los personajes muertos
+ * Muestra los personajes muertos ordenados de mayor puntuación a menor
  * @param {Personaje[]} cementerio - los personajes muertos
  */
 function mostrarCementerio(cementerio) {
@@ -108,6 +108,7 @@ do {
         defensor = Math.floor(Math.random() * personajes.length);
     } while(defensor == atacante);
     
+    // No es muy bonito reusar una variable de un tipo para asignarle un valor de otro tipo
     atacante = personajes[atacante];
     defensor = personajes[defensor];
 
