@@ -1,4 +1,5 @@
 class Circulo extends Figura {
+
     constructor(radio, color) {
         super(color); // Debemos llamar al constructor del apdre usando super
         console.log("Creado círculo");

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botellas</title>
+    <script src="CpuRisc.js" defer></script>
+    <script src="CpuCisc.js" defer></script>
+</head>
+<body>
+    Todo sale por consola
+    <script>
+        window.onload = function () {
+            const cpu1 = new CpuRisc("h1g");
+            cpu1.AX = 3;
+            cpu1.BX = 4;
+            cpu1.sumar();
+            console.log(cpu1.toString()); // 3 y 4 y 7
+            cpu1.incrementar();
+            console.log(cpu1.toString()); // 3 y 4 y 8
+            cpu1.AX = 10
+            cpu1.restar();
+            console.log(cpu1.toString()); // 10 y 4 y 6
+            console.log("CPU CISC");
+            const cpu2 = new CpuCisc("H1O");
+            cpu2.AX = 3;
+            cpu2.BX = 4;
+            cpu2.multiplicar();
+            console.log(cpu2.toString()); // 3 y 4 y 12 y false
+            cpu2.BX = 0;
+            cpu2.dividir();
+            console.log(cpu2.toString()); // 3 y 0 y 12 y true
+        }
+    </script>
+</body>
+</html>

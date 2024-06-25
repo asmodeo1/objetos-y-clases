@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados</title>
+    <script src="dado.js"></script>
+</head>
+<body>
+    Todo sale por consola
+    <script>
+        const d1 = new Dado(6);
+        console.log(d1.tirar());
+        console.log(d1.tirar());
+        console.log(d1.tirar());
+        console.log("Dado 2");
+        const d2 = new Dado(3); // Al poner 3, debería quedar 4
+        console.log(d2.tirar());
+        console.log(d2.tirar());
+        console.log(d2.tirar());
+        console.log("Dado 3");
+        const d3 = new Dado(15);
+        console.log(d3.tirar());
+        console.log(d3.tirar());
+        console.log(d3.tirar());
+
+
+
+
+
+    </script>
+</body>
+</html>

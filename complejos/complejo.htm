@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complejos</title>
+    <script src="complejo.js"></script>
+</head>
+<body>
+    Todo sale por consola
+    <script>
+        const c1 = new Complejo(2, 4);
+        console.log(c1.toString());
+        const c2 = new Complejo(1, 2);
+        const c3 = c1.sumar(c2);
+        console.log(c3.toString()); // 3 + 6i
+        const c4 = c1.restar(c1);
+        console.log(c4.toString()); // 0 + 0i
+        console.log(c1.sumar(c2).sumar(new Complejo(10, 5).restar(c1)).toString()); // 11 + 7i
+
+        const c5 = Complejo.sumar(c1, c3);
+
+        const c6 = Complejo.sumar(new Complejo(3, 4), new Complejo(5, 3));
+
+        console.log(c1.comparar(c2)); // false
+        console.log(c1.comparar(c1)); // true
+        console.log(Complejo.comparar(c1, c2)); // false
+
+    </script>
+</body>
+</html>

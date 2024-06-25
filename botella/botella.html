@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botellas</title>
+    <script src="botella.js"></script>
+</head>
+<body>
+    Todo sale por consola
+    <script>
+        const b1 = new Botella(10);
+        b1.introducir(3);
+        console.log(b1.toString()); // 3 y 10
+        b1.extraer(1);
+        console.log(b1.toString()); // 2 y 10
+        b1.extraer(15);
+        console.log(b1.toString()); // 0 y 10
+        b1.llenar();
+        console.log(b1.toString()); // 10 y 10
+
+
+
+    </script>
+</body>
+</html>
