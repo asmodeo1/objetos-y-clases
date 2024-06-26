@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Fuente Montserrat: https://fonts.google.com/
+     
+     -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            font-family: montserrat;
+        }
+        @font-face {
+            font-family: montserrat;
+            src: url(fuentes/Montserrat-Regular.ttf);
+        }     
+        header h1 {
+            font-size: 2rem;
+            text-align: center;
+            background-color: rgb(10, 54, 121);
+            color: white;
+        }
+        #habitaciones {
+            margin: 20px;
+            display: grid;
+            gfrid-template-columns: repeat(10, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            flex-wrap: wrap;
+            gap:10px;
+        }
+        .habitacion {
+            background-color: antiquewhite;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid rgb(20, 85, 145);
+            aspect-ratio: 1.3;
+        }
+        .habitacion p {
+            margin-bottom: 1rem;
+        }
+        .habitacion p:first-of-type {
+            font-weight: bold;
+        }
+        .ocupada {
+            background-color: rgb(238, 138, 145);
+
+        }
+        .libre {
+
+        }
+        #info {
+            display: flex;
+            margin: 1rem auto;
+            justify-content: space-around;
+            background-color: rgb(100, 170, 240);
+            padding: 1rem;
+            color: white;
+        }
+    </style>
+    <script src="huesped.js" defer></script>
+    <script src="habitacion.js" defer></script>
+    <script src="hotel.js" defer></script>
+    <script src="hotelUI.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Reservas hoteleras</h1>
+    </header>
+    <main>
+        <header id="info">
+            <div>Habitaciones ocupadas: <span id="habitacionesOcupadas">0</span></div>
+            <div>Habitaciones libres: <span id="habitacionesLibres">0</span></div>
+            <div>% Ocupación: <span id="porcentajeOcupacion">0</span>%</div>
+        </header>
+        <section id="habitaciones">
+
+        </section>
+    </main>
+</body>
+</html>
