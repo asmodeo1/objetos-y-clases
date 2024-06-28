@@ -8,7 +8,7 @@ puede guardar atributos privados, con lo que tendremos que hacerlo a mano */
 export function guardar(habitaciones) {
     let datos = "[";
     for (const h of habitaciones) {
-        datos += `{"numero": ${h.numero}, "camas": ${h.camas},"ocupada": ${h.isOcupada()}},`
+       datos += h.toJSON() + ",";
     }
     // Debemos quitar la última coma de la última habitación
     // -1 pues las cadenas comienzan en cero

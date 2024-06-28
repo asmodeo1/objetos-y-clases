@@ -1,4 +1,5 @@
 import { Hotel } from "./hotel.js";
+import { Huesped } from "./huesped.js";
 import { cargar, guardar } from "./almacenamiento.js"
 
 /**
@@ -11,20 +12,31 @@ function checkInOut(evt) {
     const habitacion = hotel.obtenerHabitacion(elemento.dataset.numeroHabitacion);
     // No comprobamos si devuelve null pues nunca debería pasar
     if(habitacion.isOcupada()) {
+        // Dejamos libre la habitación
         habitacion.ocupada = false;
+        elemento.classList.toggle("ocupada");
+        actualizarInformacion();
+        /* No es lo más óptimo volver a guardar todas las habitaciones pero con almacenamiento
+        local no hay posibilidad de modificar solo un trozo. Una alternativa sería guardar
+        cada habitación por separado */
+        guardar(hotel.obtenerHabitaciones());
     } else {
-        habitacion.ocupada = true;
+        // Guardamos en la variable global la habitación que se quiere ocupar y la caja 
+        habitacionSeleccionada = habitacion;
+        cajaHabitacionSeleccionada = elemento;
+        document.getElementById("formulario").style.display = "flex";
+        document.getElementById("nombre").value = "";
+        let fecha = new Date();
+        document.getElementById("fechaEntrada").valueAsDate = fecha;
+        document.getElementById("fechaSalida").valueAsDate = fecha;
+        
     }
     // El if podría quedar así
     //habitacion.ocupada = !habitacion.isOcupada();
     // O 
     // habitacion.ocupada = habitacion.isOcupada() ? false : true;
-    elemento.classList.toggle("ocupada");
-    actualizarInformacion();
-    /* No es lo más óptimo volver a guardar todas las habitaciones pero con almacenamiento
-    local no hay posibilidad de modificar solo un trozo. Una alternativa sería guardar
-    cada habitación por separado */
-    guardar(hotel.obtenerHabitaciones());
+
+
 }
 
 /**
@@ -46,7 +58,7 @@ function inicializacion() {
         hotel = new Hotel(100);
     } else {
         // Creamos un hotel sin habitaciones
-        hotel = new Hotel(0, false);
+        hotel = new Hotel(0);
         hotel.cargarHabitaciones(habitacionesCargadas);
     }
 
@@ -70,10 +82,56 @@ function inicializacion() {
     guardar(hotel.obtenerHabitaciones());
 }
 
+function aceptarReserva() {
+    const nombre = document.getElementById("nombre");
+    const fechaEntrada = document.getElementById("fechaEntrada");
+    const fechaSalida = document.getElementById("fechaSalida");
+    let mensaje = "";
+    if(nombre.checkValidity() == false) {
+        mensaje = "<p>Falta el nombre o tiene menos de 5 caracteres</p>";
+    }
+    if(fechaEntrada.checkValidity() == false) {
+        mensaje += "<p>Falta la fecha de entrada</p>";
+    }
+    if(fechaSalida.checkValidity() == false) {
+        mensaje += "<p>Falta la fecha de salida</p>";
+    }
+    if(fechaEntrada.valueAsDate > fechaSalida.valueAsDate) {
+        mensaje += "<p>La fecha de entrada debe ser menor o igual a la de salida</p>";
+    }
+    if(mensaje == "") {
+        document.getElementById("errores").innerHTML = "";
+        document.getElementById("formulario").style.display = "none";
+        // Vamos a ocupar la habitación
+        habitacionSeleccionada.ocupada = true;
+        habitacionSeleccionada.huesped = new Huesped(nombre.value);
+        habitacionSeleccionada.fechaEntrada = fechaEntrada.value;
+        habitacionSeleccionada.fechaSalida = fechaSalida.value;
+        cajaHabitacionSeleccionada.classList.toggle("ocupada");
+        guardar(hotel.obtenerHabitaciones());
+    } else {
+        document.getElementById("errores").innerHTML = mensaje;
+    }
+
+
+}
+
+function cerrarVentanaReserva() {
+    document.getElementById("formulario").style.display = "none";
+}
+
 
 let hotel;
+// Para que el formulario sepa que habitación es la que se quiere ocupar
+let habitacionSeleccionada = null;
+let cajaHabitacionSeleccionada = null;
 
 inicializacion();
+
+document.getElementById("aceptarReserva").addEventListener("click", aceptarReserva);
+document.getElementById("cerrarVentanaReserva").addEventListener("click", cerrarVentanaReserva);
+
+
 
 
 

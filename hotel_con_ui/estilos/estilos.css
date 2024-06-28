@@ -34,7 +34,7 @@ header h1 {
     font-weight: bold;
     padding: 1rem;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
 main {
@@ -71,6 +71,9 @@ main {
         margin-left: auto;
         margin-right: auto;
     }
+    #formulario {
+        max-width: 1000px;
+    }
     header{
         /* Como el header es fixed, no podemos centrarlo con margin auto.
         Un truco es el siguiente */
@@ -78,27 +81,12 @@ main {
         transform: translateX(-50%);
     }
 }
-#formulario {
-    margin: 1rem;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    box-sizing: border-box;
-    width: 90%;
-    top:50%;
-    transform: translateY(-50%);
-    display: none;;
-}
 
 @media screen and (max-width: 600px) {
     #informacion {
         margin-top: 2px;
         flex-direction: column;
-        row-gap: 10px;
+        row-gap: 5px;
     }
     main {
         margin-top: 180px;
@@ -107,3 +95,42 @@ main {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 }
+
+#formulario {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    background-color: rgba(60, 60, 59, 0.9);
+    color: white;
+    position: fixed;
+    box-sizing: border-box;
+    width: 90%;
+    top:20%;
+    left:50%;
+    transform: translate(-50%);
+    display: none;
+}
+#formulario input {
+    max-width: 90%;
+}
+.botonesReserva {
+    width: 100%;
+    text-align: center;
+}
+.botonesReserva input {
+    padding: 7px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border: white solid 1px;
+}
+.botonAceptar {
+    background-color: darkgreen;
+    color: white;
+}
+.botonCancelar {
+    background-color: rgb(129, 20, 1);
+    color: white;
+}
+

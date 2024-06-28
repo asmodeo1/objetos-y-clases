@@ -26,11 +26,16 @@
 
     <section id="formulario">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" required placeholder="Introduce el nombre" >
+        <input type="text" id="nombre" required placeholder="Introduce el nombre" minlength="5">
         <label for="fechaEntrada">Entrada:</label>
         <input type="date" id="fechaEntrada" required>
         <label for="fechaSalida">Salida:</label>
         <input type="date" id="fechaSalida" required>
+        <div class="botonesReserva">
+            <input type="button" value="Aceptar" id="aceptarReserva" class="botonAceptar">
+            <input type="button" value="Cancelar" id="cerrarVentanaReserva" class="botonCancelar">
+        </div>
+        <div id="errores"></div>
     </section>
 
     

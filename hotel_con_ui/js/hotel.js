@@ -1,10 +1,11 @@
 import { Habitacion } from "./habitacion.js";
+import { Huesped } from "./huesped.js";
 
 export class Hotel {
     #habitaciones = [];
 
-    constructor(numeroHabitaciones, crearHabitaciones = true) {
-        if(crearHabitaciones) {
+    constructor(numeroHabitaciones) {
+        if(numeroHabitaciones > 0) {
            for (let i = 1; i <= numeroHabitaciones; i++) {
                 this.#habitaciones.push(new Habitacion(i, Math.floor(Math.random() * 4) + 1));
             }
@@ -17,7 +18,7 @@ export class Hotel {
      */
     cargarHabitaciones(habitaciones) {
         for (const h of habitaciones) {
-            this.#habitaciones.push(new Habitacion(h.numero, h.camas, h.ocupada));
+            this.#habitaciones.push(new Habitacion(h.numero, h.camas, h.ocupada, new Huesped(h.huesped), h.fechaEntrada, h.fechaSalida));
         }
     }
 
@@ -36,7 +37,7 @@ export class Hotel {
         // Como filter devuelve un array debemos coger el primer elemento del mismo, 
         // aunque en nuestro caso solo pueda haber uno
         if(habitaciones[0].isOcupada() == true) {
-            return true;
+            return false;
         }
         habitaciones[0].huesped = huesped;
         habitaciones[0].ocupada = true;
@@ -56,7 +57,7 @@ export class Hotel {
         // Como filter devuelve un array debemos coger el primer elemento del mismo, 
         // aunque en nuestro caso solo pueda haber uno
         if(habitaciones[0].isOcupada() == false) {
-            return true;
+            return false;
         }
         habitaciones[0].huesped = null;
         habitaciones[0].ocupada = false;

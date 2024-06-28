@@ -19,4 +19,8 @@ export class Huesped {
     toString() {
         return `Nombre: ${this.#nombre} Vip: ${this.#vip}`;
     }
+
+    toJSON() {
+        return `{"nombre": "${this.#nombre}", "vip": "${this.#vip}}"`;
+    }
 }
