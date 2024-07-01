@@ -1,4 +1,6 @@
+import { EstadosPartida } from "./estadosPartida.js";
 export class Personaje {
+    // Creamos los atributos del personaje privados
     #nombre;
     #ataque = 0;
     #defensa = 0;
@@ -14,6 +16,7 @@ export class Personaje {
         this.#imagen = imagen;
     }
 
+    // Creamos unos cuantos getters para poder acceder al valor de los atributos desde fuera de la clase
     get nombre() {
         return this.#nombre;
     }
@@ -41,23 +44,20 @@ export class Personaje {
     /**
      * Realiza una lucha entre dos personajes
      * @param {Personaje} enemigo 
-     * @returns {number} - 1 si ganó el atacante, -1 si ganó el defensor y 0 si no ganó nadie
+     * @returns {EstadosPartida} - ATACANTE si ganó el atancante, DEFENSOR si ganó el defensor y 
+     *                          EMPATE si empataron
      */
     atacar(enemigo) {
         if(this.#ataque > enemigo.#defensa) {
             enemigo.#salud -= this.#ataque - enemigo.#defensa;
             this.#puntos++;
-            return 1;
+            return EstadosPartida.ATACANTE;
         } else if(this.#ataque < enemigo.#defensa) {
             this.#salud -= enemigo.#defensa - this.#ataque; 
             enemigo.#puntos++;
-            return -1;
+            return EstadosPartida.DEFENSOR;
         } else {
-            return 0;
+            return EstadosPartida.EMPATE;
         }
-    }
-
-    toString() {
-        return `nombre: ${this.#nombre} salud: ${this.#salud} puntos: ${this.#puntos}`;
     }
 }
