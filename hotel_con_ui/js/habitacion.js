@@ -66,7 +66,13 @@ export class Habitacion {
     }
 
     toJSON() {
+        const fechaEntrada = this.#fechaEntrada != null ? `"${this.#fechaEntrada}"` : null
+        const fechaSalida = this.#fechaSalida != null ? `"${this.#fechaSalida}"`  : null;
+        const huesped =  this.#huesped != null? `"${this.#huesped.nombre}"` : null;
+
         return `{"numero": ${this.#numero}, "camas": ${this.#camas}, "ocupada": ${this.#ocupada}`
-            + `,"huesped": "${this.#huesped != null? this.#huesped.nombre : null}", "fechaEntrada": "${this.#fechaEntrada}", "fechaSalida": "${this.#fechaSalida}"}`;
+            + `,"huesped": ${huesped}`
+            + `, "fechaEntrada": ${fechaEntrada}`
+            + `, "fechaSalida": ${fechaSalida}}`;
     }
 }

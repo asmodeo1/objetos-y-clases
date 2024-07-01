@@ -75,7 +75,16 @@ function inicializacion() {
             elemento.classList.add("ocupada");
         }
         elemento.addEventListener("click", checkInOut);
-        elemento.innerHTML = `<p>Número: ${h.numero}</p><p>Camas: ${h.camas}</p>`;
+        let fechaEntrada = "";
+        if(h.fechaEntrada != null) {
+            fechaEntrada = `<p>E: ${h.fechaEntrada}</p>`;
+        }
+        let fechaSalida = "";
+        if(h.fechaSalida != null) {
+            fechaSalida = `<p>S: ${h.fechaSalida}</p>`;
+        }
+        elemento.innerHTML = `<p>Número: ${h.numero}</p><p>Camas: ${h.camas}</p>`
+            + fechaEntrada + fechaSalida;
     }
     // Debemos mostrar al comienzo cuantas habitaciones libres hay
     actualizarInformacion();
@@ -108,6 +117,7 @@ function aceptarReserva() {
         habitacionSeleccionada.fechaEntrada = fechaEntrada.value;
         habitacionSeleccionada.fechaSalida = fechaSalida.value;
         cajaHabitacionSeleccionada.classList.toggle("ocupada");
+        cajaHabitacionSeleccionada.innerHTML += `<p>E: ${fechaEntrada.value}</p><p>S: ${fechaSalida.value}</p>`;
         guardar(hotel.obtenerHabitaciones());
     } else {
         document.getElementById("errores").innerHTML = mensaje;
