@@ -119,6 +119,7 @@ function aceptarReserva() {
         cajaHabitacionSeleccionada.classList.toggle("ocupada");
         cajaHabitacionSeleccionada.innerHTML += `<p>E: ${fechaEntrada.value}</p><p>S: ${fechaSalida.value}</p>`;
         guardar(hotel.obtenerHabitaciones());
+        actualizarInformacion();
     } else {
         document.getElementById("errores").innerHTML = mensaje;
     }
